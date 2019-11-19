@@ -1,0 +1,857 @@
+Publication Number,Title,Abstract,All Claims,First US Classification,All CP Classifications,All IP Classifications
+US6687227,"Systems and methods for requesting packets for transmission over a wirless channel having a dynamically changing capacity due to a highly varibale delay","Systems and methods which allow the under-utilization of high-speed radio channels to be reduced significantly are provided which feature packet buffering and buffer management for a specific link segment of the end-to-end TCP connection. Dynamic rate control (DRC) is performed in a manner which transparently uses the advertised receiver window size mechanism provided within TCP to maintain a steady stream of packets to be transported onto a long and variable delay high-speed channel. A queue is managed by dynamically relating the current size of the queue to the amount of incoming data by enlarging or shrinking the client advertised window size to the predicted buffer growth. DRC does not perform end-to-end flow control but rather it supplements this function of TCP. The invention may be implemented as an agent of TCP in the sense that it is hidden in the middle of the network.","1. A method of requesting packets from a first end-point for transmission to a second end-point over a first channel followed by a second channel which is a wireless channel having a dynamically changing capacity due to a highly variable delay, the method comprising at an interface between the first and second channels:
+queuing packets received on the first channel in a queue having a queue length equal to the number of packets queued, and dequeueing them onto the second channel as capacity of the second channel permits; 
+making an estimate representative of the instantaneous capacity of the second channel; 
+as a function of the queue length and the estimate, requesting packet transmissions from the first end-point in a manner which avoids the queue becoming empty when the first end-point still has further packets to transmit. 
+2. A method according to claim 1 for application in the context of an end-to-end packet delivery system in which the first end-host is permitted to send packets as a function of a window size specified in acknowledgement packets it receives, the method further comprising:
+receiving acknowledgement packets over the second channel; 
+for each acknowledgement packet received: 
+extracting an original window size specified in the acknowledgement packet received; 
+calculating a new window size as a function of the queue length, the estimate and the original window size; 
+generating a new acknowledgement packet which is substantially the same as the acknowledgement packet received except that the new window size has been substituted in place of the original window size; 
+requesting packet transmissions from the first end-point by forwarding the acknowledgement packet on the first channel. 
+3. A method according to claim 2 further comprising:
+determining as said estimate one or more acknowledgement frequency parameters representative of the rate at which acknowledgements are being received over the second channel. 
+4. A method according to claim 3 wherein determining one or more acknowledgement frequency parameters comprises:
+maintaining an average time between acknowledgement packets; 
+determining a difference between a most recent time between acknowledgement packets and the average time between acknowledgement packets. 
+5. A method according to claim 4 wherein said new window size is computed according to:
+new window size&equals;&agr; (original window size)&plus;&bgr;/(number of packets in queue&plus;1)&plus;&dgr;(Difference between most recent acknowledgement inter-arrival time and average inter-arrival time) where &agr;, &bgr; and &dgr; are parameters. 
+6. A method according to claim 5 for use in the context of TCP/IP, where said acknowledgments are TCP acknowledgements.
+7. A method according to claim 6 wherein said original window size is a TCP client advertised window size, and wherein said new window size is a TCP advertised window size.
+8. A method according to claim 2 wherein said new window size is computed as an increasing function of the original window size, an increasing function of the instantaneous capacity of the second channel, and a decreasing function of the number of packets in the queue.
+9. A method according to claim 2 for use in the context of TCP/IP, where said acknowledgments are TCP acknowledgements.
+10. A method according to claim 9 wherein said original window size is a TCP client advertised window size, and wherein said new window size is a TCP advertised window size.
+11. A method according to claim 1 for application in the context of an end-to-end packet delivery system in which the first end-host is permitted to send packets as a function of a window size specified in acknowledgement packets it receives, the method further comprising:
+determining as said estimate one or more acknowledgement frequency parameters representative of the rate at which acknowledgements are being received over the second channel. 
+12. A method according to claim 1 further comprising computing a number of packets to request as an increasing function of the instantaneous capacity on the second channel, and a decreasing function of the number of packets in the queue, wherein requesting packet transmissions from the first end-point comprises requesting said number of packets to request.
+13. A method according to claim 1 for use in the context of TCP/IP (Transport Control Protocol/Internet Protocol), wherein requesting packet transmissions is done using a TCP (Transport Control Protocol) advertised window size mechanism.
+14. A method according to claim 1 wherein there is an end-to-end acknowledgement protocol between the two end-hosts.
+15. A method according to claim 14 wherein said second channel features a link layer ARQ (Automatic Repeat Request) protocol which functions below the level of the end-to-end acknowledgement protocol.
+16. A method according to claim 15 wherein the link layer ARQ protocol is RLP-III (Radio Link Protocol-III).
+17. An apparatus for requesting packets from a first end-point for transmission to a second end-point over a first channel followed by a second channel which is a wireless channel having a dynamically changing capacity due to a highly variable delay, the apparatus comprising a queue adapted to queue packets and having a queue length equal to the number of packets queued, and a processing element adapted to queue packets received on the first channel in the queue, and to dequeue them onto the second channel as capacity of the second channel permits, the processing element being further adapted to make an estimate representative of the instantaneous capacity of the second channel, and as a function of the queue length and the estimate, request packet transmissions from the first end-point in a manner which avoids the queue becoming empty when the first end-point still has further packets to transmit.
+18. An intermediate node comprising the apparatus of claim 17.
+19. A wireless access node comprising the apparatus of claim 17.
+20. A digital signal processor comprising the apparatus of claim 17.
+21. An application specific integrated circuit comprising the apparatus of claim 17.
+22. A printed circuit card comprising the apparatus of claim 17.
+23. An apparatus for requesting packets from a first end-point for transmission to a second end-point over a first channel followed by a second channel which is a wireless channel having a dynamically changing capacity due to a highly variable delay, the method comprising at an interface between the first and second channels:
+queuing means for queuing packets received on the first channel and for dequeueing them onto the second channel as capacity of the second channel permits; 
+processing means for making an estimate representative of the instantaneous capacity of the second channel; 
+packet transmission requesting means for, as a function of the queue length and the estimate, requesting packet transmissions from the first end-point in a manner which avoids the queue becoming empty when the first end-point still has further packets to transmit.",370231000,"H04L0001183500 | H04L0047100000 | H04L0047140000 | H04L0047193000 | H04L0047270000 | H04L0047280000 | H04L0047300000 | H04L2001009200 | H04W0028140000","H04L00100000 | H04L00118000 | H04L01256000"
+US6691096,"General purpose data container method and apparatus for implementing av/c descriptors","Disclosed herein is a data management system for AV/C descriptor data. The system includes a data container hierarchical structure. The system also includes a methodology for compiling data from the containers into a read buffer upon receipt of a request from a requester. The data presented to the requestor will preferably be in a format that may be understood by other device requesters that may or may not be utilizing this same container system.","1. A method of managing AV/C object list descriptor data stored in memory, the descriptor data comprising an externally visible address space, the method comprising:
+compiling a plurality of containers in said memory from said AV/C object list descriptor data wherein each of said plurality of containers includes a portion of said AV/C descriptor data; 
+registering one or more fields within each said each of said plurality of containers; and 
+arranging said plurality of containers into a logical hierarchy. 
+2. The method of claim 1, further comprising:
+associating addresses in said memory with each of said one or more fields sequentially enumerated within each container in said plurality of containers. 
+3. The method of claim 2, further comprising mapping said fields to a prescribed field list.
+4. The method of claim 3, further comprising:
+accessing any field within any of said plurality of containers independently from any other ones of said plurality of containers; and 
+reading data from any field within any of said plurality of containers without affecting access to any other of said plurality of containers. 
+5. In a memory space, an AV/C object list descriptor management system, comprising:
+a plurality of descriptor data containers wherein each of said plurality of data containers stores a portion of AV/C object list descriptor data, the descriptor data comprising an externally visible address space; 
+one or more data fields within each of said plurality of containers; and 
+wherein said plurality of containers is arranged in a hierarchical format. 
+6. The AV/C object list descriptor management system of claim 5, further comprising unique address registers of said memory space associated with each of said one or more data fields in each of said plurality of containers.
+7. The AV/C object list descriptor management system of claim 6, further comprising means for building a read buffer in response to a read descriptor request, said read buffer presented in a standardized list format.
+8. The AV/C descriptor object list management system of claim 7 wherein said means for building a read buffer includes means for mapping said unique address registers to said standardized list format fields.
+9. The AV/C object list descriptor management system of claim 8 further comprising a plurality of child containers, said plurality of child containers including at least an object list header container, and an object list entries container reflecting the number of object list entries include therebeneath, said object list entries container including at least one child container in the form of an object list entry.
+10. A method for compiling an AV/C object list descriptor readable buffer from one or more data containers, each of said one or more data containers storing a portion of AV/C descriptor data in a memory, the descriptor data comprising an externally visible address space, said method comprising:
+identifying a top level data container from said one or more containers; 
+initializing compilation attributes for reading data from said one or more data containers into a readable buffer; 
+sequentially reading data from said one or more data containers; and 
+copying said read data into said readable buffer. 
+11. The method of claim 10 wherein step of said initializing said compilation attributes comprises:
+establishing said readable buffer in a memory space and setting a readable buffer offset to zero. 
+12. The method of claim 11 wherein the step of sequentially reading said data includes recursively searching for responsive data, said recursive search initialized with said initialized compilation attributes.
+13. A method for reading AV/C descriptor container data from one or more data containers each storing a portion of AV/C descriptor data stored in memory into a readable buffer upon receipt of an address request and request length from a requester, the descriptor data comprising an externally visible address space, the method comprising:
+ascertaining which container, of the one or more containers, holds the initial address of the request; 
+reading all data available and responsive to the request within the ascertained container; and 
+copying the read data to a read buffer. 
+14. The method of claim 13, further comprising recursively reading data from any other sequentially addressed containers, one at a time, until the request is satisfied within the constraints of available containers.",001001000,"G06F0016289000 | Y10S0707999310 | Y10S0707999420",G06F01730000
+US6693643,"Method and apparatus for color space conversion","Methods and apparatuses for converting color components in one space to those in another space. In one aspect of the invention a method for vector conversion including: loading a first vector of components into a vector register; generating a first vector of indices in a vector register each index of the first vector of indices being one of the first vector of components at least one component in the first vector of components being replicated as a plurality of duplicated indices in the first vector of indices; looking up simultaneously a first vector of data items from a plurality of look up tables using the first vector of indices; and summing up at least one subset of the first vector of data items into at least one component of a second vector of components.","1. A method for vector conversion, the method comprising:
+loading a first vector of components into a vector register; 
+generating a first vector of indices in a vector register, each index of the first vector of indices being one of the first vector of components, at least one component in the first vector of components being replicated as a plurality of duplicated indices in the first vector of indices; and 
+looking up simultaneously a first vector of data items from a plurality of look up tables using the first vector of indices. 
+2. A method as in claim 1 further comprising:
+summing up at least one subset of the first vector of data items into at least one component of a second vector of components. 
+3. A method as in claim 2 wherein the first vector of components is a vector of color components represented in a first color space and the second vector of components is a vector of color components represented in a second color space.
+4. A method as in claim 3 wherein one of the color spaces is one of:
+a) YCrCb; 
+b) RGB; 
+c) YUV; 
+d) YIQ; 
+e) HSI; 
+f) HSV; and 
+g) HLS. 
+5. A method as in claim 4 wherein a transformation from the first color space to the second color space is linear.
+6. A method as in claim 4 wherein a transformation from the first color space to the second color space is nonlinear.
+7. A method as in claim 1 wherein the first vector of indices is generated using a vector permutation operation.
+8. A method as in claim 1 wherein a component of the first vector of components is replicated as a plurality of duplicated indices in the first vector of indices for looking up respectively a plurality of bit segments of one data item in the first vector of data items.
+9. A method as in claim 1 wherein the first vector of components are replicated as a plurality of groups of indices in the first vector of indices for looking up respectively a plurality of groups of data items in the first vector of data items.
+10. A method as in claim 9 further comprising:
+summing simultaneously data items within each group of the plurality of groups of data items into a component of a second vector of components. 
+11. A method as in claim 10 wherein said summing is performed using one of:
+a) vector sum across; and 
+b) vector sum across partial. 
+12. A method as in claim 10 further comprising:
+concurrently looking up simultaneously a second vector of data items from the plurality of look up tables using a second vector of indices while performing said summing. 
+13. A method as in claim 12 further comprising:
+concurrently generating a third vector of indices in a vector register while performing said summing. 
+14. A machine readable media containing executable computer program instructions which when executed by a digital processing system cause said system to perform a method for vector conversion, the method comprising:
+loading a first vector of components into a vector register; 
+generating a first vector of indices in a vector register, each index of the first vector of indices being one of the first vector of components, at least one component in the first vector of components being replicated as a plurality of duplicated indices in the first vector of indices; and 
+looking up simultaneously a first vector of data items from a plurality of look up tables using the first vector of indices. 
+15. A media as in claim 14 wherein the method further comprises:
+summing up at least one subset of the first vector of data items into at least one component of a second vector of components. 
+16. A media as in claim 15 wherein the first vector of components is a vector of color components represented in a first color space and the second vector of components is a vector of color components represented in a second color space.
+17. A media as in claim 16 wherein one of the color spaces is one of:
+a) YCrCb; 
+b) RGB; 
+c) YUV; 
+d) YIQ; 
+e) HSI; 
+f) HSV; and 
+g) HLS. 
+18. A media as in claim 17 wherein a transformation from the first color space to the second color space is linear.
+19. A media as in claim 17 wherein a transformation from the first color space to the second color space is nonlinear.
+20. A media as in claim 14 wherein the first vector of indices is generated using a vector permutation operation.
+21. A media as in claim 14 wherein a component of the first vector of components is replicated as a plurality of duplicated indices in the first vector of indices for looking up respectively a plurality of bit segments of one data item in the first vector of data items.
+22. A media as in claim 14 wherein the first vector of components are replicated as a plurality of groups of indices in the first vector of indices for looking up respectively a plurality of groups of data items in the first vector of data items.
+23. A media as in claim 22 wherein the method further comprises:
+summing simultaneously data items within each group of the plurality of groups of data items into a component of a second vector of components. 
+24. A media as in claim 23 wherein said summing is performed using one of:
+a) vector sum across; and 
+b) vector sum across partial. 
+25. A media as in claim 23 wherein the method further comprises:
+concurrently looking up simultaneously a second vector of data items from the plurality of look up tables using a second vector of indices while performing said summing. 
+26. A media as in claim 25 wherein the method further comprises:
+concurrently generating a third vector of indices in a vector register while performing said summing. 
+27. A processing system for vector conversion, the system comprising:
+means for loading a first vector of components into a vector register; 
+means for generating a first vector of indices in a vector register, each index of the first vector of indices being one of the first vector of components, at least one component in the first vector of components being replicated as a plurality of duplicated indices in the first vector of indices; and 
+means for looking up simultaneously a first vector of data items from a plurality of look up tables using the first vector of indices. 
+28. A processing system as in claim 27 further comprising:
+means for summing up at least one subset of the first vector of data items into at least one component of a second vector of components. 
+29. A processing system as in claim 28 wherein the first vector of components is a vector of color components represented in a first color space and the second vector of components is a vector of color components represented in a second color space.
+30. A processing system as in claim 29 wherein one of the color spaces is one of:
+a) YCrCb; 
+b) RGB; 
+c) YUV; 
+d) YIQ; 
+e) HSI; 
+f) HSV; and 
+g) HLS. 
+31. A processing system as in claim 30 wherein a transformation from the first color space to the second color space is linear.
+32. A processing system as in claim 30 wherein a transformation from the first color space to the second color space is nonlinear.
+33. A processing system as in claim 27 wherein the first vector of indices is generated using a vector permutation operation.
+34. A processing system as in claim 27 wherein a component of the first vector of components is replicated as a plurality of duplicated indices in the first vector of indices for looking up respectively a plurality of bit segments of one data item in the first vector of data items.
+35. A processing system as in claim 27 wherein the first vector of components are replicated as a plurality of groups of indices in the first vector of indices for looking up respectively a plurality of groups of data items in the first vector of data items.
+36. A processing system as in claim 35 further comprising:
+means for summing simultaneously data items within each group of the plurality of groups of data items into a component of a second vector of components. 
+37. A processing system as in claim 36 wherein said summing is performed using one of:
+a) vector sum across; and 
+b) vector sum across partial. 
+38. A processing system as in claim 36 further comprising:
+means for concurrently looking up simultaneously a second vector of data items from the plurality of look up tables using a second vector of indices while performing said summing. 
+39. A processing system as in claim 38 further comprising:
+means for concurrently generating a third vector of indices in a vector register while performing said summing. 
+40. A processing system for vector conversion, the system comprising:
+a vector register file comprising a plurality of vector registers; 
+a vector processing unit coupled to the vector register file, the vector processing unit comprising a vector look up unit adapted to look up a vector of data items simultaneously, the vector processing unit: 
+loading a first vector of components into a vector register in the vector register file; 
+generating a first vector of indices in a vector register in the vector register file, each index of the first vector of indices being one of the first vector of components, at least one component in the first vector of components being replicated as a plurality of duplicated indices in the first vector of indices; and 
+looking up simultaneously a first vector of data items from a plurality of look up tables using the first vector of indices in the vector look up unit. 
+41. A processing system as in claim 40 wherein the vector processing unit sums up at least one subset of the first vector of data items into at least one component of a second vector of components.
+42. A processing system as in claim 41 wherein the first vector of components is a vector of color components represented in a first color space and the second vector of components is a vector of color components represented in a second color space.
+43. A processing system as in claim 42 wherein one of the color spaces is one of:
+a) YCrCb; 
+b) RGB; 
+c) YUV; 
+d) YIQ; 
+e) HSI; 
+f) HSV; and 
+g) HLS. 
+44. A processing system as in claim 43 wherein a transformation from the first color space to the second color space is linear.
+45. A processing system as in claim 43 wherein a transformation from the first color space to the second color space is nonlinear.
+46. A processing system as in claim 40 wherein the first vector of indices is generated using a vector permutation operation.
+47. A processing system as in claim 40 wherein a component of the first vector of components is replicated as a plurality of duplicated indices in the first vector of indices for looking up respectively a plurality of bit segments of one data item in the first vector of data items.
+48. A processing system as in claim 40 wherein the first vector of components are replicated as a plurality of groups of indices in the first vector of indices for looking up respectively a plurality of groups of data items in the first vector of data items.
+49. A processing system as in claim 48 wherein the vector processing unit sums simultaneously data items within each group of the plurality of groups of data items into a component of a second vector of components.
+50. A processing system as in claim 49 wherein said summing is performed using one of:
+a) vector sum across; and 
+b) vector sum across partial. 
+51. A processing system as in claim 49 wherein the vector processing unit concurrently looks up simultaneously a second vector of data items from the plurality of look up tables using a second vector of indices while summing the data items.
+52. A processing system as in claim 51 wherein the vector processing unit concurrently generates a third vector of indices in a vector register while summing the data items.",345602000,"H04N0009640000 | H04N0009690000 | H04N0011042000","H04N00964000 | H04N00969000 | H04N01104000"
+US6694435,"Method of obfuscating computer instruction streams","Methods and apparatuses for obfuscating computer instruction streams. In one aspect of the invention an exemplary method includes breaking each of at least two operative instruction streams into a plurality of parts and interleaving the parts into a new instruction stream. In another aspect of the invention an exemplary method includes breaking each of at least two operative instruction streams into a plurality of parts and interleaving the parts with obfuscation codes into a new instruction stream. The obfuscation codes interrelate the parts from different instruction streams to prevent reversal of interleaving.","1. A method comprising:
+breaking each of at least two operative instruction streams into a plurality of parts; 
+interleaving the parts into a new instruction stream. 
+2. A method as in claim 1 further comprising:
+inserting into the new instruction stream an obfuscation code that interrelates the parts from the operative instruction streams. 
+3. A method as in claim 1 further comprising:
+transforming at least one of the parts after said breaking and before said interleaving. 
+4. A method as in claim 3 wherein said transforming is such that the new instruction stream performs at least the same logical operations of one of the operative instruction streams.
+5. A method as in claim 1 further comprising:
+transforming one of the operative instruction streams before said breaking. 
+6. A method as in claim 1 wherein two of the operative instructions streams are the same.
+7. A digital processing system comprising:
+means for breaking each of at least two operative instruction streams into a plurality of parts; 
+means for interleaving the parts into a new instruction stream. 
+8. A digital processing system as in claim 7 further comprising:
+means for inserting into the new instruction stream an obfuscation code that interrelates the parts from the operative instruction streams. 
+9. A digital processing system as in claim 7 further comprising:
+means for transforming at least one of the parts after said breaking and before said interleaving. 
+10. A digital processing system as in claim 9 wherein said transforming is such that the new instruction stream performs at least the same logical operations of one of the operative instruction streams.
+11. A digital processing system as in claim 7 further comprising:
+means for transforming one of the operative instruction streams before said breaking. 
+12. A digital processing system as in claim 7 wherein two of the operative instructions streams are the same.
+13. A machine readable media containing executable computer program instructions which when executed by a digital processing system cause said system to perform a method comprising:
+breaking each of at least two operative instruction streams into a plurality of parts; 
+interleaving the parts into a new instruction stream. 
+14. A machine readable media as in claim 13 wherein the method further comprises:
+inserting into the new instruction stream an obfuscation code that interrelates the parts from the operative instruction streams. 
+15. A machine readable media as in claim 13 wherein the method further comprises:
+transforming at least one of the parts after said breaking and before said interleaving. 
+16. A machine readable media as in claim 15 wherein said transforming is such that the new instruction stream performs at least the same logical operations of one of the operative instruction streams.
+17. A machine readable media as in claim 13 wherein the method further comprises:
+transforming one of the operative instruction streams before said breaking. 
+18. A machine readable media as in claim 13 wherein two of the operative instructions streams are the same.
+19. A processing system for combining computer instruction streams, said processing system comprising:
+a processor; 
+a memory coupled to said processor, said memory storing at least two operative instruction streams, said processor breaking each of the streams into a plurality of parts, said processor interleaving the parts into a new instruction stream. 
+20. A processing system as in claim 19 wherein said processor inserts into the new instruction stream an obfuscation code that interrelates the parts from the operative instruction streams.
+21. A processing system as in claim 19 wherein said processor transforms at least one of the parts after breaking each of the streams and before interleaving the parts.
+22. A processing system as in claim 21 wherein said transforming is such that the new instruction stream performs at least the same logical operations of one of the operative instruction streams.
+23. A processing system as in claim 19 wherein said processor transforms one of the operative instruction streams before breaking each of the streams.
+24. A processing system as in claim 19 wherein two of the operative instructions streams are the same.
+25. A machine readable media containing an obfuscated instruction stream which is executable by a digital processing system, said obfuscated instruction stream is produced by a method comprising:
+breaking each of at least two operative instruction streams into a plurality of parts; 
+interleaving the parts into a new instruction stream. 
+26. A machine readable media as in claim 25 wherein the method further comprises:
+inserting into the new instruction stream obfuscation codes that interrelate the parts from the operative instruction streams. 
+27. A machine readable media as in claim 25 wherein the method further comprises:
+transforming at least one of the parts after said breaking and before said interleaving. 
+28. A machine readable media as in claim 27 wherein said transforming is such that the new instruction stream performs at least the same logical operations of one of the operative instruction streams.
+29. A machine readable media as in claim 25 wherein the method further comprises:
+transforming the operative instruction streams before said breaking. 
+30. A machine readable media as in claim 25 wherein two of the operative instructions streams are the same.
+31. A method comprising:
+storing an obfuscated stream; 
+executing said obfuscated stream, wherein said obfuscated stream comprises parts which are interleaved, said parts having been taken from at least two operative instruction streams; 
+wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams: and, when the two first parts are executed, the second part is also executed. 
+32. A method as in claim 31 wherein said obfuscated stream further comprises an obfuscation code that interrelates the parts from the operative instruction streams.
+33. A method as in claim 31 wherein at least one of said parts has been transformed before said parts are interleaved and after said parts are taken from the operative instruction streams.
+34. A method as in claim 31 wherein at least one of said parts has been so transformed before said parts are interleaved and after said parts are taken from the operative instruction streams that the obfuscated stream performs at least the same logical operations of one of the operative instruction streams.
+35. A method as in claim 31 wherein one of the operative instruction streams has been transformed before said parts are taken from the operative instruction streams.
+36. A method as in claim 31 wherein two of the operative instructions streams are the same.
+37. A machine readable media containing executable computer program instructions which when executed by a digital processing system cause said system to perform a method comprising:
+storing an obfuscated stream; 
+executing said obfuscated stream, wherein said obfuscated stream comprises parts which are interleaved, said parts having been taken from at least two operative instruction streams; 
+wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams; and, when the two first parts are executed, the second part is also executed. 
+38. A machine readable media as in claim 37 wherein said obfuscated stream is stored temporarily in DRAM.
+39. A machine readable media as in claim 37 wherein said obfuscated stream further comprises an obfuscation code that interrelates the parts from the operative instruction streams.
+40. A machine readable media as in claim 39 wherein said obfuscated stream is stored temporarily in DRAM.
+41. A machine readable media as in claim 37 wherein at least one of said parts has been transformed before said parts are interleaved and after said parts are taken from the operative instruction streams.
+42. A machine readable media as in claim 41 wherein said obfuscated stream is stored temporarily in DRAM.
+43. A machine readable media as in claim 37 wherein at least one of said parts has been so transformed before said parts are interleaved and after said parts are taken from the operative instruction streams that the obfuscated stream performs at least the same logical operations of one of the operative instruction streams.
+44. A machine readable media as in claim 37 wherein one of the operative instruction streams has been transformed before said parts are taken from the operative instruction streams.
+45. A machine readable media as in claim 44 wherein said obfuscated stream is stored temporarily in DRAM.
+46. A machine readable media as in claim 37 wherein two of the operative instructions streams are the same.
+47. A machine readable media as in claim 46 wherein said obfuscated stream is stored temporarily in DRAM.
+48. A method as in claim 1, wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams; and, when the two first parts are executed, the second part is also executed.
+49. A method as in claim 48, wherein the second part is stack balanced.
+50. A digital processing system as in claim 7, wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams; and, when the two first parts are executed, the second part is also executed.
+51. A digital processing system as in claim 50, wherein the second part is stack balanced.
+52. A machine readable media as in claim 13, wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams; and, when the two first parts are executed, the second part is also executed.
+53. A machine readable media as in claim 52, wherein the second part is stack balanced.
+54. A processing system as in claim 19, wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams; and, when the two first parts are executed, the second part is also executed.
+55. A processing system as in claim 54, wherein the second part is stack balanced.
+56. A machine readable media as in claim 25, wherein a second part of a second one of the at least two operative instruction streams is interleaved between two first parts of a first one of the at least two operative instruction streams; and, when the two first parts are executed, the second part is also executed.
+57. A machine readable media as in claim 56, wherein the second part is stack balanced.
+58. A method as in claim 31, wherein the second part is stack balanced.
+59. A machine readable media as in claim 37, wherein the second part is stack balanced.",713189000,G06F0021140000,"G06F00944000 | G06F02100000"
+US6697001,"Continuous-time sigma-delta modulator with discrete time common-mode feedback","Systems and methods are described for a continuous-time sigma-delta modulator with discrete time common-mode feedback. The method includes calculating an integrator input signal as a difference between an input signal and a modulation feedback signal continuous time integrating the integrator input signal to produce an integrator output signal having a common mode voltage determining the common mode voltage of the integrator output signal using a discrete-time process determining an integrator feedback signal as a function of the common-mode voltage and feeding back the feedback signal to the integrator in order to maintain the common mode voltage at a substantially constant value sampling and quantizing the integrator output signal to produce a sigma-delta modulated output signal and converting the sigma-delta modulated output signal from a digital signal to an analog signal to produce the modulation feedback signal.","1. A method for continuous-time sigma-delta modulation of an input signal, comprising:
+calculating an integrator input signal as a difference between the input signal and a modulation feedback signal; 
+continuous time integrating the integrator input signal to produce an integrator output signal having a common mode voltage; 
+determining the common mode voltage of the integrator output signal using a discrete-time process; 
+determining an integrator feedback signal as a function of the common-mode voltage; 
+maintaining the common mode voltage at a substantially constant value using the integrator feedback signal; 
+sampling and quantizing the integrator output signal to produce a sigma-delta modulated output signal; and 
+converting the sigma-delta modulated output signal from a digital signal to an analog signal, to produce the modulation feedback signal. 
+2. The method of claim 1, wherein determining the integrator feedback signal further comprises:
+comparing the common mode voltage to a reference common mode voltage; and 
+generating the integrator feedback signal as a function of the difference between the common mode voltage and the reference common mode voltage. 
+3. The method of claim 2, further comprising generating a bias voltage to adjust the biasing of the continuous-time integrator.
+4. An apparatus for a continuous time modulation, comprising:
+an adder to calculate an integrator input signal as a difference between an input signal and a modulation feedback signal; 
+a continuous time integrator to integrate said integrator input signal o produce an integrator output signal having a common mode component; 
+a discrete-time common mode feedback circuit which produces the integrator feedback signal as a function of the common mode component of said integrator output signal in order to maintain the common mode component at a substantially constant value; 
+a quantizer coupled to receive said integrator output signal and to produce a quantized output signal; and 
+a digital-to-analog converter coupled to receive the quantized output signal to produce said modulation feedback signal. 
+5. The apparatus of method 4, further comprising a buffer coupled between the continuous time integrator and the discrete-time common mode feedback circuit.
+6. The apparatus of method 4, the discrete-time common mode feedback circuit comprising:
+a plurality of capacitors; and 
+a first and second set of switching elements coupled to the plurality of capacitors and operable to adjust an equivalent resistance of the plurality of capacitors. 
+7. The apparatus of claim 6, the first and second sets of switching elements having different on times.
+8. The apparatus of claim 6, wherein the first and second sets of switching elements control a transistor biasing voltage and a common mode control voltage.
+9. The apparatus of method 4, wherein the discrete-time common mode feedback circuit comprises:
+a plurality of capacitors; and 
+a first, second, third and fourth set of switching elements coupled to the plurality of capacitors and operable to adjust an equivalent resistance of the plurality of capacitors. 
+10. The apparatus of claim 9, wherein the first and second sets of switching elements have different on times.
+11. The apparatus of method 10, wherein the first and second sets of switching elements adjust a transistor biasing voltage.
+12. The apparatus of claim 9, wherein the third and fourth sets of switching elements have different on times.
+13. The apparatus of claim 12, wherein the third and fourth sets of switching elements adjust a common-mode control voltage.
+14. The apparatus of claim 4, said continuous time integrator comprising an active RC integrator.
+15. The apparatus of claim 4, said continuous time integrator comprising an active GmC integrator.
+16. An apparatus for continuous time modulation, comprising:
+a continuous time integrator to integrate an input signal to produce an integrator output signal having a common mode portion; and 
+a discrete-time common mode feedback circuit which produces an integrator feedback signal as a function of the common mode portion of the integrator output signal, the integrator feedback signal being used by the continuous time integrator to maintain the common mode portion at a substantially constant value. 
+17. The apparatus of claim 16, further comprising a buffer coupled between the continuous time integrator and the discrete-time common mode feedback circuit.
+18. The apparatus of claim 16, the discrete-time common mode feedback circuit comprising:
+a plurality of capacitors; and 
+a first and second set of switching elements coupled to the plurality of capacitors and operable to adjust an equivalent resistance of the plurality of capacitors. 
+19. The apparatus of claim 18, the first and second sets of switching elements having different on times.
+20. The apparatus of claim 18, wherein the first and second sets of switching elements control a transistor biasing voltage and a common mode control voltage.
+21. The apparatus of claim 16, wherein the discrete-time common mode feedback circuit comprises:
+a plurality of capacitors; and 
+a first, second, third and fourth set of switching elements coupled to the plurality of capacitors and operable to adjust an equivalent resistance of the plurality of capacitors. 
+22. The apparatus of claim 21, wherein the first and second sets of switching elements have different on times.
+23. The apparatus of claim 22, wherein the first and second sets of switching elements adjust a transistor biasing voltage.
+24. The apparatus of claim 21, wherein the third and fourth sets of switching elements have different on times.
+25. The apparatus of claim 24, wherein the third and fourth sets of switching elements adjust a common-mode control voltage.
+26. The apparatus of claim 16, said continuous time integrator comprising an active RC integrator.
+27. The apparatus of claim 16, said continuous time integrator comprising an active GmC integrator.
+28. An electronic apparatus, comprising:
+a continuous time integrator to integrate an input signal to produce an integrator output signal having a common mode portion; and 
+a discrete-time common mode feedback circuit which produces an integrator feedback signal as a function of the common mode portion of the integrator output signal, the integrator feedback signal being used by the continuous time integrator to maintain the common mode portion at a substantially constant value. 
+29. The electronic apparatus of claim 28, wherein the electronic apparatus is a cellular phone.",341143000,"H03M0003356000 | H03M0003430000 | H03M0003456000",H03M00302000
+US6697076,"Method and apparatus for address re-mapping","Methods and apparatuses for mapping a logical address to a physical address in a data processing system having at least one host processor with host processor cache and host memory. In one aspect of the invention an exemplary method includes translating a memory access request from logical addresses to physical addresses through a memory mapping mechanism determining whether the physical address is configured for cache coherent access if so transmitting the request to cache coherent interface and otherwise transmitting the request to cache non-coherent interface. Other methods and apparatuses are also described.","1. A video address re-mapping table (VART) stored in a host memory of a computer having at least one host processor, the VART comprising:
+a plurality of VART entries, each of the plurality of VART entries being capable of mapping two logical addresses to two physical addresses; 
+wherein the each of the plurality of VART entries comprising an even page table entry and an odd page table entry, each page table entry (PTE) having at least two information fields providing information for translation of a logical address to a physical address; 
+a first configuration register defining a base address of the VART; and 
+a second configuration register defining the size of the VART. 
+2. The VART of claim 1, wherein the physical address references a location in the host memory of the computer.
+3. The VART of claim 1, wherein the at least two information fields comprises:
+a physical page number (PPN) field having a PPN corresponding to a physical address page; 
+an attribute bits field having at least one indicator defining an attribute of the page referenced by the PPN field; and 
+wherein the at least one indicator comprises a coherent indicator indicating whether the PTE is configured for coherent memory access. 
+4. The VART of claim 3, wherein the at least one indicator further comprises a page table entry valid indicator indicating whether the PTE is valid, the valid indicator having at least one bit.
+5. The VART of claim 4, wherein the valid indicator is set by a software program executed by the host processor.
+6. The VART of claim 3, wherein the coherent indicator comprises at least one bit.
+7. The VART of claim 1, wherein the VART entry is 64-bit wide and wherein each of the even and odd pages is 32-bit wide.
+8. The VART of claim 1, wherein each PTE is mapped to a page of 4096 bytes.
+9. The VART of claim 1, wherein the VART can be used by a media processor to map a logical address space to a physical address space of the host memory.
+10. The VART of claim 9, wherein the address space is an accelerated graphics port (AGP) address space.
+11. The VART of claim 9, wherein the physical address space is allocated by a software program executed by the host processor.
+12. The VART of claim 9, wherein the physical address space is allocated by a software program dynamically.
+13. The VART of claim 9, wherein the logical address space is shareable with the host processor.
+14. The VART of claim 9, wherein the media processor is a stand-alone processor.
+15. The VART of claim 9, wherein the media processor is a co-processor to the host processor.
+16. The VART of claim 9, wherein the media processor is integrated in a core logic chipset that functions as a bridge between other components of the computer, and the host processor and host memory.
+17. An apparatus for re-mapping a logical address to a physical address in a computer having at least one host processor and host memory, comprising:
+a video address re-mapping table (VART), the VART having a plurality of VART entries, each of the plurality of VART entries having an even page and an odd page, each of the even and odd page having a page table entry (PTE) having physical page frame number (PPN) field and a coherent indicator defining whether the PPN is configured for coherent memory access; 
+a translation look-aside buffer (TLB) for storing recently used VART entries, the TLB having at least one TLB entry, each of the at least one TLB entry being capable of mapping two logical addresses to two physical addresses; 
+wherein if the portion of the logical address matches the LPN field of one TLB entry, the TLB provides translation information from the PPN field of the one TLB entry to form the physical address; and 
+wherein if the portion of the logical address does not match the LPN field of one TLB entry, the VART provides translation information referenced by the portion of the logical address to form the physical address. 
+18. The apparatus of claim 17, wherein each of the at least one TLB entry receives a portion of the logical address, wherein the TLB entry comprises a logical page frame number (LPN) field and two corresponding PPN fields.
+19. The apparatus of claim 17, wherein the TLB entry further comprises a coherent indicator indicating whether the PPN is configured for coherent memory access.
+20. The apparatus of claim 18, wherein the TLB further comprises a TLB Tag memory having a plurality of entries and a TLB Data memory having a plurality of entries, wherein each TLB Tag entry comprises a LPN field and two valid indicators indicating whether the two PPN fields are valid, and wherein each of TLB Data entry comprises an even entry and an odd entry, each entry having a PPN field and a coherent indicator indicating whether the PPN is configured for coherent access.
+21. The apparatus of claim 20, wherein the TLB Tag memory is a random access memory (RAM) having 128 entries and the TLB Data memory is a RAM having 256 entries.
+22. The apparatus of claim 20, wherein the TLB Tag memory is configured as multiple sets arrangement, each set having a associated least recently used (LRU) number.
+23. The apparatus of claim 22, wherein the multiple sets comprise four sets.
+24. The apparatus of claim 17, wherein the TLB is a cache memory.
+25. The apparatus of claim 17, further comprising:
+a cache coherent interface for coherent memory access if the physical address is configured for cache coherent memory access; and 
+a cache non-coherent interface for non-coherent memory access if the physical address is configured for cache non-coherent memory access. 
+26. The apparatus of claim 17, wherein the physical address references a location in the memory storing data.
+27. The apparatus of claim 17, wherein the VART is configured by loading a first register and a second register, the first register defining the base address of the VART and the second register defining the size of the VART.
+28. The apparatus of claim 17, wherein the TLB further comprises a least recently used (LRU) replacement mechanism for determining which entry is updated.
+29. The apparatus of claim 28, wherein the LRU replacement mechanism comprises a LRU counter.
+30. The apparatus of claim 17, wherein the TLB is accessible through memory mapped addresses.
+31. The apparatus of claim 17, wherein the VART can be enabled and invalidated by a control register.
+32. The apparatus of claim 17, wherein the logical address includes a logical page number (LPN) field and an offset field.
+33. A method, in a processor having a cache coherent interface and a cache non-coherent interface, the method comprising:
+receiving a memory access request for translation of a logical address to a physical address; 
+translating the logical address to the physical address through a memory mapping mechanism; 
+determining whether the physical address is configured for cache coherent memory access; 
+wherein if the physical address is configured for cache coherent memory access, transmitting the memory access request to the cache coherent interface; and 
+wherein if the physical address is configured for cache non-coherent memory access, transmitting the memory access request to the cache non-coherent memory interface. 
+34. The method of claim 33, further comprising:
+retrieving a logical page frame number (LPN) from the logical address; 
+combining the LPN with a base address of a video address re-mapping table (VART) to generate a VART entry address; 
+selecting even or odd page entry of the VART entry address; 
+retrieving a physical page frame number (PPN) from a page table entry (PTE) of the VART; and 
+generating the physical address based on the PPN. 
+35. The method of claim 34, further comprising examining the logical address to determine whether the logical address is included in the VART, by comparing the LPN with the size of the VART.
+36. The method of claim 35, wherein if the logical address is not included in the VART, the method further comprises generating an error message.
+37. The method of claim 36, wherein the error message is generated through an interrupt mechanism.
+38. The method of claim 34, further comprising examining the PTE of the VART to determine whether the PTE is valid.
+39. The method of claim 38, wherein if the PTE is invalid, the method further comprises generating an error message.
+40. The method of claim 39, wherein the error message is generated through an interrupt mechanism.
+41. The method of claim 34, further comprising:
+accessing a translation look-aside buffer (TLB) to search an entry with a matched logical page frame number (LPN) of the logical address; 
+wherein if the LPN is found in the TLB, retrieving the corresponding PPN from the TLB entry; and 
+generating the physical address based on the PPN. 
+42. The method of claim 41, further comprising updating the TLB for the matched entry with a least recently used (LRU) replacement mechanism.
+43. The method of claim 41, wherein if the LPN is not found in the TLB, the method further comprises:
+translating the logical address to the physical address using the VART; and 
+creating an entry in the TLB for the translation. 
+44. The method of claim 41, wherein if the LPN is found in the TLB, the method further comprises examining the TLB entry to determine whether the TLB entry is valid.
+45. The method of claim 44, wherein if the TLB entry is invalid, the method further comprises generating an error message.
+46. The method of claim 45, wherein the error message is generated through an interrupt mechanism.
+47. The method of claim 41, wherein if the LPN is found in the TLB, the method further comprises:
+examining the TLB entry to determine whether the corresponding PPN in the TLB entry is configured for cache coherent access; 
+wherein if the corresponding PPN is configured for cache coherent access, transmitting the memory access request to the cache coherent interface; and 
+wherein if the corresponding PPN is configured for cache non-coherent access, transmitting the memory access request to the cache non-coherent interface. 
+48. An apparatus, having a cache coherent interface and a cache non-coherent interface, for translating logical addresses to a physical addresses, the apparatus comprising:
+means for receiving a memory access request for translation of a logical address to a physical address; 
+means for translating the logical address to the physical address through a memory mapping mechanism; 
+means for determining whether the physical address is configured for cache coherent memory access; 
+wherein if the physical address is configured for cache coherent memory access, means for transmitting the memory access request to the cache coherent interface; and 
+wherein if the physical address is configured for cache non-coherent memory access, means for transmitting the memory access request to the cache non-coherent memory interface. 
+49. The apparatus of claim 48, further comprising:
+means for retrieving a logical page frame number (LPN) from the logical address; 
+means for combining the LPN with a base address of a video address re-mapping table (VART) to generate a VART entry address; 
+means for selecting even or odd page entry of the VART entry address; 
+means for retrieving a physical page frame number (PPN) from a page table entry (PTE) of the VART; and 
+means for generating the physical address based on the PPN. 
+50. The apparatus of claim 49, further comprising means for examining the logical address to determine if the logical address is included in the VART, by comparing the LPN with the size of the VART.
+51. The apparatus of claim 50, wherein if the logical address is not included in the VART, the apparatus further comprises means for generating an error message.
+52. The apparatus of claim 51, wherein the error message is generated through an interrupt mechanism.
+53. The apparatus of claim 49, further comprising means for examining the PTE of the VART to determine whether the PTE is valid.
+54. The apparatus of claim 53, wherein if the PTE is invalid, the apparatus further comprises means for generating an error message.
+55. The apparatus of claim 54, wherein the error message is generated through an interrupt mechanism.
+56. The apparatus of claim 49, further comprising:
+means for accessing a translation look-aside buffer (TLB) to search an entry with a matched logical page frame number (LPN) of the logical address; 
+wherein if the LPN is found in the TLB, means for retrieving the corresponding PPN from the TLB entry; and 
+means for generating the physical address based on the PPN. 
+57. The apparatus of claim 56, further comprising means for updating the TLB for the matched entry with a least recently used (LRU) replacement mechanism.
+58. The apparatus of claim 56, wherein if the LPN is not found in the TLB, the apparatus further comprises:
+means for translating the logical address to the physical address using the VART; and 
+means for creating an entry in the TLB for the translation. 
+59. The apparatus of claim 56, wherein if the LPN is found in the TLB, the apparatus further comprises means for examining the TLB entry to determine whether the TLB entry is valid.
+60. The apparatus of claim 59, wherein if the TLB entry is invalid, the apparatus further comprises generating an error message.
+61. The apparatus of claim 60, wherein the error message is generated through an interrupt mechanism.
+62. The apparatus of claim 56, wherein if the LPN is found in the TLB, the apparatus further comprises:
+means for examining the TLB entry to determine whether the corresponding PPN in the TLB entry is configured for cache coherent access; 
+wherein if the corresponding PPN is configured for cache coherent access, means for transmitting the memory access request to the cache coherent interface; and 
+wherein if the corresponding PPN is configured for cache non-coherent access, means for transmitting the memory access request to the cache non-coherent interface. 
+63. A machine readable medium having stored thereon executable code which causes a machine to perform a method, in a processor having a cache coherent interface and a cache non-coherent interface, the method comprising:
+receiving a memory access request for translation of a logical address to a physical address; 
+translating the logical address to the physical address through a memory mapping mechanism; 
+determining whether the physical address is configured for cache coherent memory access; 
+wherein if the physical address is configured for cache coherent memory access, transmitting the memory access request to the cache coherent interface; and 
+wherein if the physical address is configured for cache non-coherent memory access, transmitting the memory access request to the cache non-coherent memory interface. 
+64. The machine readable medium of claim 63, wherein the method further comprises:
+retrieving a logical page frame number (LPN) from the logical address; 
+combining the LPN with a base address of a video address re-mapping table (VART) to generate a VART entry address; 
+selecting even or odd page entry of the VART entry address; 
+retrieving a physical page frame number (PPN) from a page table entry (PTE) of the VART; and 
+generating the physical address based on the PPN. 
+65. The machine readable medium of claim 64, wherein the method further comprises examining the logical address to determine if the logical address is included in the VART, by comparing the LPN with the size of the VART.
+66. The machine readable medium of claim 65, wherein if the logical address is not included in the VART, the method further comprises generating an error message.
+67. The machine readable medium of claim 66, wherein the error message is generated through an interrupt mechanism.
+68. The machine readable medium of claim 64, wherein the method further comprises examining the PTE of the VART to determine whether the PTE is valid.
+69. The machine readable medium of claim 68, wherein if the PTE is invalid, the method further comprises generating an error message.
+70. The machine readable medium of claim 69, wherein the error message is generated through an interrupt mechanism.
+71. The machine readable medium of claim 64, wherein the method further comprises:
+accessing a translation look-aside buffer (TLB) to search an entry with a matched logical page frame number (LPN) of the logical address; 
+wherein if the LPN is found in the TLB, retrieving the corresponding PPN from the TLB entry; and 
+generating the physical address based on the PPN. 
+72. The machine readable medium of claim 71, wherein the method further comprises updating the TLB for the matched entry with a least recently used (LRU) replacement mechanism.
+73. The machine readable medium of claim 71, wherein if the LPN is not found in the TLB, the method further comprises:
+translating the logical address to the physical address using the VART; and 
+creating an entry in the TLB for the translation. 
+74. The machine readable medium of claim 71, wherein if the LPN is found in the TLB, the method further comprises examining the TLB entry to determine whether the TLB entry is valid.
+75. The machine readable medium of claim 74, wherein if the TLB entry is invalid, the method further comprises generating an error message.
+76. The machine readable medium of claim 75, wherein the error message is generated through an interrupt mechanism.
+77. The machine readable medium of claim 71, wherein if the LPN is found in the TLB, the method further comprises:
+examining the TLB entry to determine whether the corresponding PPN in the TLB entry is configured for cache coherent access; 
+wherein if the corresponding PPN is configured for cache coherent access, transmitting the memory access request to the cache coherent interface; and 
+wherein if the corresponding PPN is configured for cache non-coherent access, transmitting the memory access request to the cache non-coherent interface.",345568000,"G06F0012081500 | G06F0012100900 | G06F0012102700 | G06F0012108100","G06F01208000 | G06F01210000"
+US6697079,"Color palette providing cross-platform consistency","A method and system to provide a color palette which facilitates user selection of web-safe colors. In laying out the color palette the extent of achromatic colors located within the color palette is determined. The achromatic colors are then arranged in one group on the palette for instance in order of lightest to darkest. The non web-safe chromatic colors are then grouped together. From this grouping blends of the colors are created. Finally the web-safe chromatic colors are grouped together. Blends with respect to the web-safe chromatic colors are created and then grouped on the color palette.","1. A method for providing a color palette which facilitates user selection of colors having a consistent appearance across different platforms;
+determining the achromatic colors to be located within a color palette; 
+arranging all the achromatic colors in one contiguous grouping within the palette; 
+placing blends of non-web safe chromatic colors in a second contiguous grouping within the palette; and 
+placing all web-safe chromatic colors, including blends created from the web-safe chromatic colors, in a third contiguous grouping within the palette; 
+wherein a subgroup of web-safe chromatic color blends are arranged within said third grouping to form a square wherein the colors are arranged on one side of a diagonal of the square horizontally in order of decreasing saturation towards said diagonal and vertically in order of decreasing value towards said diagonal, and the colors in the other side of the diagonal are arranged horizontally decreasing in value towards said diagonal and vertically decreasing in saturation towards said diagonal. 
+2. The method of claim 1, wherein the non web-safe chromatic colors are positioned within said second grouping by their respective hues.
+3. The method of claim 1, wherein the non web-safe blends are created from the non web-safe chromatic colors via incremental changed in saturation and value.
+4. The method of claim 1, wherein the blends of non web-safe chromatic colors are arranged in order from lightest to darkest within said second grouping.
+5. The method of claim 1, wherein the web-safe chromatic colors are grouped by hue within said third grouping.
+6. The method of claim 1, wherein said blends of web-safe chromatic colors are created via incremental changes in saturation and value.
+7. The method of claim 1, wherein the colors on one side of said diagonal are primary colors and the colors on the other side of said diagonal are secondary colors.
+8. The method of claim 1, wherein a subgroup of additional secondary colors are positioned adjacent their corresponding square and form a rectangle.
+9. The method of claim 1, wherein said palette comprises a grid of rows and columns in which said colors are displayed, and said one grouping comprises one row or column of said grid.
+10. The method of claim 9, wherein said one grouping is positioned in a row or column at an edge of said grid.
+11. The method of claim 9, wherein said achromatic colors are arranged in order from lightest to darkest within said one row or column.
+12. The method of claim 9, wherein said one row or column contains one contiguous subgroup of web-safe colors, and a second contiguous subgroup of non web-safe colors.
+13. A computer readable medium containing a program which executes the following steps:
+determining the achromatic colors to be located within a color palette; 
+arranging all the achromatic colors in one contiguous grouping within the palette; 
+placing blends of non web-safe chromatic colors in a second contiguous grouping within the palette; and 
+placing all web-safe chromatic colors, including blends created from the web-safe chromatic colors, in a third contiguous grouping within the palette; 
+wherein a subgroup of web-safe chromatic color blends are arranged within said third grouping to form a square wherein the colors are arranged on one side of a diagonal of the square horizontally in order of decreasing saturation towards said diagonal and vertically in order of decreasing value towards said diagonal, and the colors in the other side of the diagonal are arranged horizontally decreasing in value towards said diagonal and vertically decreasing in saturation towards said diagonal. 
+14. An apparatus which implements a color palette that facilitates user selection of web-safe colors, comprising:
+a computer; 
+a storage device that stores a color palette; and 
+a display device that displays the color palette; 
+wherein the color palette is organized into one contiguous grouping of achromatic colors, a second contiguous grouping of non web-safe chromatic colors, and a third contiguous grouping of web-safe chromatic colors, including blends that are created from the web-safe chromatic colors wherein a subgroup of web-safe chromatic color blends are arranged within said third grouping to form a square wherein the colors are arranged on one side of a diagonal of the square horizontally in order of decreasing saturation towards said diagonal and vertically in order of decreasing value towards said diagonal, and the colors in the other side of the diagonal are arranged horizontally decreasing in value towards said diagonal and vertically decreasing in saturation towards said diagonal. 
+15. A computer generated color palette for displaying in a graphical user interface of a computer, said color palette comprising one contiguous grouping of achromatic colors, a second contiguous grouping of non web-safe chromatic colors, and a third contiguous grouping of web-safe chromatic colors, including blends that are created from the web-safe chromatic colors wherein a subgroup of web-safe chromatic color blends are arranged within said third grouping to form a square wherein the colors are arranged on one side of a diagonal of the square horizontally in order of decreasing saturation towards said diagonal and vertically in order of decreasing value towards said diagonal, and the colors in the other side of the diagonal are arranged horizontally decreasing in value towards said diagonal and vertically decreasing in saturation towards said diagonal.
+16. A computer implemented method for displaying colors in a color palette, comprising the steps of:
+arranging colors associated with a given hue angle on one side of diagonal of the rectangular geometric area so that the colors are disposed horizontally in order of decreasing saturation towards said diagonal and vertically in order of decreasing value towards said diagonal, and 
+arranging blends of colors in a range of hue angles associated with said given hue angle on the other side of the diagonal so that said blends horizontally decrease in value towards said diagonal and vertically decrease in saturation towards said diagonal. 
+17. The method of claim 16, wherein the colors on one side of said diagonal are primary colors and the colors on the other side of said diagonal are secondary colors.
+18. The method of claim 16, wherein a subgroup of additional secondary colors are positioned adjacent said rectangle in a second geometric area.
+19. The method of claim 18, wherein said second geometric area is a rectangle.
+20. A computer generated color palette for display in a graphical user interface of a computer, said color palette comprising a first contiguous grouping of primary colors, and a second contiguous grouping of secondary colors within a rectangular area, wherein the colors in said first grouping are associated with a given hue angle and arranged on one side of a diagonal of said rectangular area such that they decrease in saturation along one dimension of said rectangular area in a direction towards said diagonal and decrease in value along the other dimension of said rectangular area in a direction towards said diagonal, and wherein the colors in said second grouping are within a range of hue angles associated with said given hue angle and arranged on the other side of said diagonal such that they decrease in saturation along said other dimension in a direction towards said diagonal and decrease in value along said one dimension toward said diagonal.",345593000,G09G0005020000,G09G00502000
+US6701129,"Receiver based adaptive modulation scheme","A method is provided for adapting modulation schemes to changing channel quality with reduced overhead signalling. A remote unit measures the channel quality of a radio channel along which a signal from a base station reached the remote unit. Based on the channel quality the remote unit determines a desired set of transmission parameters from a list of sets of transmission parameters. The remote unit determines a difference in position within the list between the current set of transmission parameters and the desired set of transmission parameters. The remote unit transmits the difference to the base station which selects a new set of transmission parameters using the current set of transmission parameters and the difference. The method requires little signalling between the remote unit and the base station and is particularly beneficial in communication systems employing many sub-carriers such as OFDM systems.","1. A method of adapting a current Link Mode (LM) in a radio communication system, a LM being a set of at least one transmission parameter, the communication system including a base station which transmits a signal to a remote unit using the current LM, the method comprising the steps of:
+storing a sequence of allowed LMs at the base station and at the remote unit, each LM having a sequential position within the sequence; 
+at the remote unit, determining a channel quality of the signal; 
+at the remote unit, determining a desired LM from amongst the sequence of allowed LMs based on the channel quality; 
+at the remote unit, determining a sequential difference defined as a difference between the sequential position of the current LM and the sequential position of the desired LM; 
+transmitting the sequential difference from the remote unit to the base station; 
+at the remote unit, setting a new current LM to be the desired LM; and 
+at the base station, setting the new current LM using the sequential difference. 
+2. The method of claim 1 further comprising the step of transmitting the desired LM from the remote unit to the base station if a predefined condition is met.
+3. The method of claim 1 wherein the channel quality is a signal to interference ratio.
+4. The method of claim 1 wherein the channel quality is determined from the transmission error rate.
+5. The method of claim 1 wherein the at least one transmission parameter includes a modulation scheme.
+6. The method of claim 1 wherein the at least one transmission parameter includes a coding rate.
+7. The method of claim 6 wherein the at least one transmission parameter includes a modulation scheme.
+8. The method of claim 1 wherein the at least one transmission parameter includes antenna directional coefficients.
+9. The method of claim 1 wherein the at least one transmission parameter includes space-time coding coefficients for multiple antenna systems.
+10. The method of claim 1 wherein the signal is transmitted over a plurality of sub-carriers, each sub-carrier belonging to one of a plurality of groups of sub-carriers, each group of sub-carriers having a current LM, and wherein:
+the step of determining a channel quality determines a channel quality for each sub-carrier the step of determining a desired LM determines a desired LM for at least one group of sub-carriers; 
+the step of determining a sequential difference determines a sequential difference for at least one group of sub-carriers; 
+the step of transmitting the sequential difference transmits a sequential difference for at least one group of sub-carriers; 
+the step of setting a new current LM at the remote unit sets a new current LM for at least one group of sub-carriers; and 
+the step of setting a new current LM at the base station sets a new current LM for at last one group of sub-carriers. 
+11. The method of claim 10 further comprising the step of transmitting the desired LM for at least one group of sub-carriers from the remote unit to the base station if a predefined condition is met.
+12. The method of claim 10 wherein the channel quality of each sub-carrier is a signal to interference ratio.
+13. The method of claim 12 wherein the base station transmits a pilot signal over at least one pilot sub-carrier such that the pilot signal is either on or off, the pilot sub-carrier having a signal strength when it is received by the remote unit and a carrier frequency, and the step of determining the signal to interference ratio of a sub-carrier having a carrier frequency closer to the carrier frequency of the pilot sub-carrier than to a carrier frequency of any other pilot sub-carrier calculates a ratio of the signal strength when the pilot signal is on to the signal strength when the pilot signal is off.
+14. The method of claim 13 wherein the communication system employs Orthogonal Frequency Division Multiplexing.
+15. The method of claim 10 wherein each group of sub-carriers contains sub-carriers having contiguous sub-band numbers.
+16. The method of claim 10 wherein each group of sub-carriers contains a single sub-carrier.
+17. The method of claim 10 wherein the at least one transmission parameter includes a modulation scheme.
+18. The method of claim 10 wherein the at least one transmission parameter includes a coding rate.
+19. The method of claim 18 wherein the at least one transmission parameter includes a modulation scheme.
+20. The method of claim 10 wherein the communication system employs Orthogonal Frequency Division Multiplexing.
+21. The method of claim 1 comprising the further steps of:
+at the remote unit, selecting a packet number of a packet which will arrive at the remote unit after propagation of a return signal to the base station and propagation of a signal to the remote unit; and 
+transmitting the selected packet number from the remote unit to the base station; and wherein the step of setting a new current LM at the remote unit sets a new current LM once the remote unit receives a packet identified by the selected packet number, and wherein the step of setting a new current LM at the base station sets a new current LM once the base station transmits a packet identified by the selected packet number. 
+22. A remote unit for a radio communication system, the remote unit including a decoder which decodes a signal received from a base station using a current Link Mode (LM), a LM being a set of at least one transmission parameter, and the remote unit comprising:
+means for storing a sequence of allowed LMs, each LM having a sequential position within the sequence; 
+means for determining a channel quality of the signal; 
+means for determining a desired LM from amongst the sequence of allowed LMs based on the channel quality; 
+means for determining a sequential difference defined as a difference between the sequential position of the current LM and the sequential position of the desired LM; 
+means for transmitting the sequential difference to the base station; and 
+means for setting a new current LM to be the desired LM. 
+23. The remote unit of claim 22 further comprising means for transmitting the desired LM to the base station in the event that a predefined condition is met.
+24. The remote unit of claim 22 wherein the channel quality is a signal to interference ratio.
+25. The remote unit of claim 22 wherein the at least one transmission parameter includes a modulation scheme.
+26. The remote unit of claim 22 wherein the at least one transmission parameter includes a coding rate.
+27. The remote unit of claim 26 wherein the at least one transmission parameter includes a modulation scheme.
+28. The remote unit of claim 22 wherein the signal is received over a plurality of sub-carriers, each sub-carrier belonging to one of a plurality of groups of sub-carriers, each group of sub-carriers having a current LM, and wherein:
+the means for determining a channel quality comprise means for determining a channel quality for each sub-carrier; 
+the means for determining a desired LM comprise means for determining a desired LM for at least one group of sub-carriers 
+the means for determining a sequential difference comprise means for determining a sequential difference for at least one group of sub-carriers; 
+the means for transmitting the sequential difference comprise means for transmitting a sequential difference for at least one group of sub-carriers; and 
+the means for setting a new current LM comprise means for setting a new current LM for at least one group of sub-carriers. 
+29. The remote unit of claim 28 further comprising means for transmitting the desired LM for at least one group of sub-carriers in the event that a predefined condition is met.
+30. The remote unit of claim 28 wherein the channel quality of each sub-carrier is a signal to interference ratio.
+31. The remote unit of claim 30 wherein at least one sub-carrier is a pilot sub-carrier which carries a pilot signal, the pilot signal being either on or off, the pilot sub-carrier having a signal strength when it is received by the remote unit and a carrier frequency, and the means for determining a signal to interference ratio of a sub-carrier having a carrier frequency closer to the carrier frequency of the pilot sub-carrier than to a carrier frequency of any other pilot sub-carrier comprise means for calculating a ratio of the signal strength when the pilot signal is on to the signal strength when the pilot signal is off.
+32. The remote unit of claim 31 wherein the communication system employs Orthogonal Frequency Division Multiplexing.
+33. The remote unit of claim 28 wherein each group of sub-carriers contains sub-carriers having contiguous sub-band numbers.
+34. The remote unit of claim 28 wherein each group of sub-carriers contains a single sub-carrier.
+35. The remote unit of claim 28 wherein the at least one transmission parameter includes a modulation scheme.
+36. The remote unit of claim 28 herein the at least one transmission parameter includes a coding rate.
+37. The remote unit of claim 36 wherein the at least one transmission parameter includes a modulation scheme.
+38. The remote unit of claim 28 wherein the communication system employs Orthogonal Frequency Division Multiplexing.
+39. A base station for a radio communication system, the base station transmitting a signal to a remote unit using a current Link Mode (LM), a LM being a set of at least one transmission parameter, the base station comprising:
+means for maintaining a sequence of allowed LMs, each LM having a sequential position within the sequence; 
+means for receiving from the remote unit a sequential difference defined as a difference between the sequential position of the current LM and the sequential position of a desired LM, the desired LM belonging to the sequence of allowed LMs; and 
+means for setting a new current LM using the sequential difference. 
+40. The base station of claim 39 further comprising means for setting a new current LM to be equal to the desired LM in the event that the base station receives the desired LM from the remote unit.
+41. The base station of claim 39 wherein the at least one transmission parameter includes a modulation scheme.
+42. The base station of claim 39 wherein the at least one transmission parameter includes a coding rate.
+43. The base station of claim 42 wherein the at least one transmission parameter includes a modulation scheme.
+44. The base station of claim 39 wherein the signal is transmitted over a plurality of sub-carriers, each sub-carrier belonging to one of a plurality of groups of sub-carriers, each group of sub-carriers having a current LM, and wherein:
+the means for receiving a sequential difference comprise means for receiving a sequential difference for at least one group of sub-carriers; and 
+the means for setting a new current LM comprise means for setting a new current LM for at least one group of sub-carriers using the sequential difference for that group of sub-carriers. 
+45. The base station of claim 44 wherein each group of sub-carriers contains sub-carriers having contiguous sub-band numbers.
+46. The base station of claim 44 wherein each group of sub-carriers contains a single sub-carrier.
+47. The base station of claim 44 wherein the base station transmits a pilot signal over at least one sub-carrier such that the pilot signal is either on or off.
+48. The base station of claim 47 wherein the communication system employs Orthogonal Frequency Division Multiplexing.
+49. The base station of claim 44 further comprising:
+means for setting a new current LM for at least one group of sub-carriers to be equal to a desired LM for that group of sub-carriers in the event that the base station receives the desired LM for that group of sub-carriers. 
+50. The base station of claim 44 wherein the at least one transmission parameter includes a modulation scheme.
+51. The base station of claim 44 wherein the at least one transmission parameter includes a coding rate.
+52. The base station of claim 51 wherein the at least one transmission parameter includes a modulation scheme.
+53. The base station of claim 44 wherein the communication system employs Orthogonal Frequency Division Multiplexing.",455067110,"H04L0001002900 | H04L0001000300 | H04L0001000900 | H04L0001002500 | H04L0027260800 | H04W0024000000 | H04W0028060000 | H04W0028180000","H04L00100000 | H04L01256000 | H04L02726000 | H04W02400000 | H04W02818000 | H04W02822000 | H04W07208000"
+US6701148,"Method and apparatus for simultaneous radio and mobile frequency transition via handoff to self","A cellular network having an radio frequency (RF) management capability includes a mobile switching center at least one base station controller operative coupled to the mobile switching center and at least one base station operatively coupled to the at least one base station controller. The at least one base station is for being operatively coupled with at least one mobile station for carrying out at least one mobile communications call. Lastly a radio frequency manager is operatively coupled to the at least one base station in conjunction with the at least one mobile station. The RF manager is further for managing a handoff upon the occurrence of a prescribed event the handoff including a handoff-to-self via a simultaneous base station radio and mobile station frequency transition.","1. A cellular network having a radio frequency (RF) management capability, said network comprising:
+a mobile switching center; 
+at least one base station controller operatively coupled to said mobile switching center; 
+at least one base station operatively coupled to said at least one base station controller, the at least one base station for being operatively coupled with at least one mobile station for carrying out at least one mobile communications call in a first cell; and 
+a radio frequency manager operatively coupled to said at least one base station and in conjunction with the at least one mobile station for managing a handoff upon the occurrence of a prescribed event, the handoff including a handoff to self operable to transition said mobile station and said base station from a first frequency to a second frequency while remaining operatively coupled, wherein the second frequency is selected without querying a second cell for frequency information. 
+2. The network of claim 1, wherein the frequency transition includes an automatic frequency plan transition.
+3. The network of claim 2, wherein said radio frequency manager further includes:
+means for determining a new frequency plan; 
+means for instructing prescribed base station radios of a given cell to change to a new channel number; 
+means for issuing handoff commands from the prescribed base station radios to all mobile stations on a respective radio; 
+means for tuning the prescribed base station radio to the new channel number; and 
+means for completing the handoff by the respective mobile stations to the new channel number while remaining operatively coupled to a same physical radio. 
+4. The network of claim 3, wherein said means for tuning the prescribed base station radio to the new channel number further includes means for transmitting at least one of the following selected from the group consisting of digital verification caller code (DVCC) and supervisory audio tone (SAT).
+5. The network of claim 1, wherein the frequency transition includes an adaptive channel allocation/dynamic frequency association (ACA/DFA) noise event frequency transition.
+6. The network of claim 5, wherein said radio frequency manager further includes:
+means for detecting a prescribed level of severe noise during a DFA call and triggering an interference handoff in response thereto; 
+means for identifying a new clear channel using a prescribed DFA algorithm and instructing a prescribed base station radio to change to the new clear channel; 
+means for issuing handoff commands from the prescribed base station radio to all mobile stations on the radio; 
+means for tuning the prescribed base station radio to the new channel number; and 
+means for completing the handoff by the respective mobile stations to the new channel number while remaining operatively coupled to a same physical radio. 
+7. The network of claim 6, wherein means for tuning the prescribed base station radio to the new channel number further includes means for transmitting at least one of the following selected from the group consisting of digital verification caller code (DVCC) and supervisory audio tone (SAT).
+8. The network of claim 1, wherein the frequency transition includes one of the following selected from the group consisting of an automatic frequency plan transition and an adaptive channel allocation/dynamic frequency association (ACA/DFA) noise event frequency transition.
+9. The network of claim 8, wherein said radio frequency manager further includes:
+means for determining a new frequency plan and, in response thereto, instructing prescribed base station radios of a given cell to change to a new channel number; 
+means for detecting a prescribed level of severe noise during a DFA call and triggering an interference handoff in response thereto, further including means for identifying a new clear channel using a prescribed DFA algorithm and, in response thereto, instructing a prescribed base station radio to change to the new clear channel; 
+means for issuing handoff commands from the prescribed base station radios to all mobile stations on a respective radio; and 
+means for tuning the prescribed base station radio to the new channel number; and 
+means for completing the handoff by the respective mobile stations to the new channel number while remaining operatively coupled to a same physical radio. 
+10. The network of claim 9, wherein means for tuning the prescribed base station radio to the new channel number further includes means for transmitting at least one of the following selected from the group consisting of digital verification caller code (DVCC) and supervisory audio tone (SAT).
+11. A method of radio frequency (RF) management in a cellular network, said method comprising:
+providing a mobile switching center; 
+providing at least one base station controller operatively coupled to the mobile switching center; 
+providing at least one base station operatively coupled to the at least one base station controller, the at least one base station for being operatively coupled with at least one mobile station via a first channel for carrying out at least one mobile communications call; 
+providing a radio frequency manager operatively coupled to the at least one base station and in conjunction with the at least one mobile station; and 
+managing a handoff upon the occurrence of a prescribed event, the handoff including using a handoff-to-self to switch directly from the first channel to a second channel via a simultaneous base station radio and mobile station frequency transition, wherein said mobile station remains operatively coupled via the second channel to said base station during and after the handoff to self. 
+12. The method of claim 11, wherein the frequency transition includes an automatic frequency plan transition.
+13. The method of claim 12, wherein providing the radio frequency manager further includes:
+determining a new frequency plan; 
+instructing prescribed base station radios of a given cell to change to a new channel number; 
+issuing handoff commands from the prescribed base station radios to all mobile stations on a respective radio; 
+tuning the prescribed base station radio to the new channel number; and 
+completing the handoff by the respective mobile stations to the new channel number while remaining operatively coupled to a same physical radio. 
+14. The method of claim 13, wherein tuning the prescribed base station radio to the new channel number further includes beginning the transmission of at least one of the following selected from the group consisting of digital verification caller code (DVCC) and supervisory audio tone (SAT).
+15. The method of claim 11, wherein the frequency transition includes an adaptive channel allocation/dynamic frequency association (ACA/DFA) noise event frequency transition.
+16. The method of claim 15, wherein providing the radio frequency manager further includes:
+detecting a prescribed level of severe noise during a DFA call and triggering an interference handoff in response thereto; 
+identifying a new clear channel using a prescribed DFA algorithm and instructing a prescribed base station radio to change to the new clear channel; 
+issuing handoff commands from the prescribed base station radio to all mobile stations on the radio; 
+tuning the prescribed base station radio to the new channel number; and 
+completing the handoff by the respective mobile stations to the new channel number while remaining operatively coupled to a same physical radio. 
+17. The method of claim 16, wherein tuning the prescribed base station radio to the new channel number further includes beginning the transmission of at least one of the following selected from the group consisting of digital verification caller code (DVCC) and supervisory audio tone (SAT).
+18. The method of claim 11, wherein the frequency transition includes one of the following selected from the group consisting of an automatic frequency plan transition and an adaptive channel allocation/dynamic frequency association (ACA/DFA) noise event frequency transition.
+19. The method of claim 18, wherein providing the radio frequency manager further includes:
+determining a new frequency plan and, in response thereto, instructing prescribed base station radios of a given cell to change to a new channel number; 
+detecting a prescribed level of severe noise during a DFA call and triggering an interference handoff in response thereto, further including identifying a new clear channel using a prescribed DFA algorithm and, in response thereto, instructing a prescribed base station radio to change to the new clear channel; 
+issuing handoff commands from the prescribed base station radios to all mobile stations on a respective radio; 
+tuning the prescribed base station radio to the new channel number; and 
+completing the handoff by the respective mobile stations to the new channel number while remaining operatively coupled to a same physical radio. 
+20. The method of claim 19, wherein tuning the prescribed base station radio to the new channel number further includes beginning the transmission of at least one of the following selected from the group consisting of digital verification caller code (DVCC) and supervisory audio tone (SAT).
+21. A method for radio frequency transition using a handoff to self in a telecommunications network, said method comprising:
+establishing a call between a base station and a mobile station using a first communications channel at a first frequency; 
+identifying a prescribed event signaling that the call should be transitioned from the first frequency to a second frequency; and 
+establishing a second communications channel at the second frequency by simultaneously transitioning the base station and the mobile station to the second frequency, wherein the base station and the mobile station remain operatively coupled during the transition, the transition enabling the base station to handoff the call from the first frequency to the second frequency without using another base station. 
+22. The method of claim 21 further including utilizing a frequency plan to determine the second frequency.
+23. The method of claim 21 wherein the prescribed event is the detection of a predetermined level of noise on the first communications channel.
+24. The method of claim 21 further including determining whether a level of noise of the second communications channel is below a predetermined threshold.",455436000,H04W0036060000,H04W03606000
+US6703897,"Methods of optimising power amplifier efficiency and closed-loop power amplifier controllers","A significant part of the cost of a base station in the cellular mobile radio system is the power amplifier. Thus it is desirable to maximise usage of a power amplifier and in particular to gain the best power output from the amplifier or to improve its efficiency. Such power amplifiers however must operate within strict spectral boundaries and thus power amplifiers are typically over-specified in order to ensure that the spectral requirements are met. By measuring the output of the amplifier and determining distortion factors and then adaptively adjusting the operating characteristics of the amplifier the degree of over-specification of the amplifier required may be reduced with consequent cost and environmental savings.","1. A closed-loop power amplifier distortion controller comprising:
+(a) a closed-loop pre-distortion control arranged to apply pre-distortion to the amplifier input signal automatically based on a measured predetermined output characteristic; 
+(b) measuring means operable to measure the amount of applied pre-distortion which is representative of distortion introduced by the amplifier; and 
+(c) control means for adjusting an operating parameter of the amplifier responsive to the amount of applied pre-distortion. 
+2. A controller according to claim 1, wherein the said predetermined output characteristic is phase distortion.
+3. A controller according to claim 1, wherein the said predetermined output characteristic is amplitude distortion.
+4. A controller according to claim 1, wherein the said predetermined output characteristic is the frequency spectrum.
+5. A controller according to claim 1, wherein the said operating parameter is the output voltage of a power supply arranged to supply power to the power amplifier.
+6. A controller according to claim 1, wherein the said operating parameter is the gain of the power amplifier.
+7. A method of optimising efficiency in a power amplifier comprising:
+(a) applying pre-distortion to the amplifier input signal automatically based on a measured output characteristic, 
+(b) measuring the amount at applied pre-distortion which is representative of distortion introduced by the amplifier, and 
+(c) controlling an operational parameter of the amplifier responsive to the amount of applied pre-distortion. 
+8. A method according to claim 7, further comprising processing the output characteristic measure to determine a gradient of that measure against change in the operational characteristic, and periodically adjusting the operational parameter to substantially achieve a desired value for the said gradient.
+9. A method according to claim 8 wherein the measured output characteristic is phase distortion and wherein the desired gradient approaches infinity which is representative of clipping distortion in the amplifier.
+10. A method according to claim 8 wherein the measured output characteristic is amplitude distortion and wherein the desired gradient approaches infinity which is representative of clipping distortion in the amplifier.
+11. A method according to claim 8 wherein the operational parameter is the voltage of the electrical supply for the power amplifier.
+12. A method according to claim 8 wherein the operational parameter is the gain of the amplifier.
+13. A method according to claim 7, further comprising comparing the output characteristic measure against a predetermined threshold and periodically adjusting the operational parameter to maintain the measured output characteristic on a desired side of the said threshold.
+14. A method according to claim 13 wherein the output characteristic measure is the frequency spectrum of the output and the threshold is a predetermined spectral mask.
+15. A method according to claim 13, wherein the output characteristic measure is the waveform quality of the output.
+16. A method according to claim 13, wherein the output characteristic measure is the error vector magnitude.
+17. A method according to claim 13, wherein the output characteristic measure is code domain noise in the output.
+18. A base station for a radio network including:
+(a) a power amplifier, and 
+(b) a closed-loop power amplifier distortion controller including a closed-loop pre-distortion control arranged to apply pre-distortion to the amplifier input signal automatically based on a measured predetermined output characteristic; measuring means operable to measure the amount of applied pre-distortion which is representative of distortion introduced by the amplifier; and control means for adjusting an operating parameter of the amplifier responsive to the amount of applied pre-distortion. 
+19. A wireless communications network including a base station having:
+(a) a power amplifier, and 
+(b) a closed-loop power amplifier distortion controller including a closed-loop pre-distortion control arranged to apply pre-distortion to the amplifier input signal automatically based on a measured predetermined output characteristic; measuring means operable to measure the amount of applied pre-distortion which is representative of distortion introduced by the amplifier, and control means for adjusting an operating parameter of the amplifier responsive to the amount of applied pre-distortion.",330149000,"H03F0001324700 | H03F0001024400 | H03F0001328200 | H03F2200102000","H03F00102000 | H03F00132000"
+US6704299,"Efficient frame quality indicator for a wireless signal decoder","A method and apparatus for generating a frame quality indication of a frame of a received turbo encoded wireless signal is provided. A turbo decoder is used to decode a demodulated frame and provide a decoded frame. A turbo encoder is used to encode the decoded frame to provide a re-encoded frame. A modulator modulates the re-encoded frame. The frame quality is assessed based on a degree of correlation between the demodulated frame and the re-encoded modulated frame. The advantages include a less complex receiver due to reduced computational load and potentially greater payload capacity in frames due to elimination of Yamamoto bits.","1. A method of providing a frame quality indication for a received frame of a received, encoded wireless signal, the method comprising steps of:
+a) demodulating the received frame; 
+b) decoding the demodulated frame using a decoder, the decoder being adapted to output a decoded frame; 
+c) encoding the decoded frame using an encoder matched to the decoder, the encoder being adapted to output a re-encoded frame; 
+d) modulating the re-coded frame to provide a re-modulated frame; and 
+e) providing the frame quality indication used to specify the reliability of the reception of the received frame based on a comparison between the received frame and the re-modulated frame. 
+2. A method as claimed in claim 1, wherein the encoded wireless signal is encoded using turbo coding techniques.
+3. A method as claimed in claim 1, wherein the encoded wireless signal is encoded using Viterbi-convolutional coding techniques.
+4. A method as claimed in claim 1, wherein a copy of the received frame is stored in a frame store pending correlation with the re-modulated frame.
+5. A method as claimed in claim 1, wherein the comparison fixer comprises the step of:
+a) correlating the received frame with the re-modulated frame and computing a correlation level. 
+6. A method as claimed in claim 5, wherein the step of providing the frame quality indication fixer comprises the step of:
+a) comparing the correlation level against a threshold level, and: 
+i) accepting the frame if the frame quality indication is greater than or equal to the threshold level, and 
+ii) rejecting the frame if the correlation level is lower than the threshold level. 
+7. A method as claimed in claim 5, wherein the step of providing the frame quality indication further comprises the step of:
+a) comparing the correlation level against a first and second threshold level, the first threshold level being greater than the second threshold level, and: 
+i) accepting the frame if the correlation level is greater than or equal to the first threshold level, 
+ii) rejecting the frame if the correlation level is less than the first threshold level and greater or equal to the second threshold level, and 
+iii) rejecting the frame if the correlation level is lower than the second threshold level. 
+8. A method of enabling soft handover of a wireless communication session between base stations, the method comprising the steps of:
+a) decoding a demodulated frame provided by demodulation of a modulated frame of a received encoded wireless signal using a decoder, the decoder being adapted to output a decoded frame; 
+b) encoding the decoded frame using an encoder matched to the decoder, the encoder being adapted to output a re-encoded frame; 
+c) modulating the re-encoded frame to provide a re-modulated frame; and 
+d) selectively initiating a soft handover based on a frame quality indication used to specify a reliability of the reception of the received frame by determining a correlation level resulting from a correlation between the modulated frame and the re-modulated frame. 
+9. A method as claimed in claim 8, wherein a copy of the modulated frame is stored in a frame store pending correlation between the modulated frame and the re-modulated frame.
+10. A method as claimed in claim 8, wherein the step of selectively initiating the soft handover further comprises the step of:
+a) comparing the correlation level against a first and second threshold levels, the first threshold level being greater than the second threshold level: 
+i) suppressing soft handover if the correlation level is greater than or equal to the first threshold level, 
+ii) initiating the soft handover if the correlation level is lower than the first threshold level and greater or equal to the second threshold level, and 
+iii) performing the soft handover if the correlation level is lower than the second threshold level. 
+11. A method as claimed in claim 8, wherein the step of selectively initiating the soft handover further comprises the step of:
+a) comparing the correlation level against a threshold level, and: 
+i) suppressing soft handover if the correlation level is greater than or equal to the threshold level, and 
+ii) initiating the soft handover and performing the soft handoff if the correlation level is less than the threshold level. 
+12. A method of decoding a frame of a received encoded wireless signal, the method comprising steps of:
+a) demodulating the frame of the received signal to provide a demodulated frame; 
+b) decoding the demodulated frame using a decoder, the decoder being adapted to output a decoded frame; 
+c) encoding the decoded frame using an encoder matched to the decoder, the encoder being adapted to output a re-encoded frame; 
+d) modulating the re-encoded frame to provide a re-modulated frame; and 
+e) selectively accepting the decoded frame based on a frame quality indication used to specify the reliability of the received frame by determining a correlation level resulting from a correlation between the frame of the received signal and the re-modulated frame. 
+13. A method as claimed in claim 12, wherein the frame of the received signal is stored in a frame store pending correlation between the frame of the received signal and the re-modulated frame.
+14. A method as claimed in claim 12, wherein the step of selectively discarding the decoded frame further comprises the step of:
+a) comparing the correlation level against a threshold level, and: 
+i) accepting the decoded frame if the correlation level is greater than or equal to the threshold level, and 
+ii) discarding the decoded frame if the correlation level is less than the threshold level. 
+15. A receiver adapted to assess a frame quality indication of a modulated received frame of a received wireless signal, the receiver comprising:
+a) a demodulator for demodulating the modulated receive frame to provide a demodulated received frame; 
+b) a decoder adapted to decode the demodulated received frame, the decoder outputting a decoded received frame; 
+c) an encoder matched to the decoder, the encoder being adapted to encode the decoded received frame, the encoder being further adapted to output a re-encoded frame; 
+d) a modulator for modulating the re-encoded frame to output a re-modulated frame; 
+e) a correlator adapted to correlate the modulated received frame with the re-modulated frame, the correlator being further adapted to output a correlation level; and 
+f) a decision circuit adapted to assess the frame quality indication used to specify the reliability of the demodulated received frame based on the correlation level. 
+16. A receiver as claimed in claim 15, wherein the receiver is a turbo coding receiver.
+17. A receiver as claimed in claim 15, wherein the receiver is a Viterbi-convolutional coding receiver.
+18. A receiver as claimed in claim 15, wherein the receiver further comprises:
+a) a frame store adapted to retrievably store a copy of the demodulated frame for correlation with the re-modulated frame. 
+19. A receiver as claimed in claim 15, wherein the decision circuit further comprises:
+a) a register adapted to hold a threshold level, whereby the fire is accepted if the correlation level is greater than or equal to the threshold level, and otherwise the frame is rejected. 
+20. A receiver as claimed in claim 15, wherein the decision circuit further comprises:
+a) two registers adapted to hold a first threshold level and a second threshold level, respectively, the first threshold level being greater than the second threshold level, whereby the frame is accepted if the correlation level is greater than or equal to the first threshold level, and otherwise the frame is rejected. 
+21. A frame quality indication generator adapted to receive a modulated received frame of an encoded wireless signal and further adapted to receive a demodulated, decoded frame output by a decoder, the frame quality indication generator comprising:
+a) an encoder matched to the decoder, the encoder being adapted to encode the demodulated, decoded frame and output a re-encoded frame; 
+b) a modulator adapted to modulate the re-encoded frame and output a re-modulated frame; 
+c) a correlator adapted to correlate the modulated received frame with the re-modulated frame and output a correlation level; and 
+d) a decision circuit adapted to assess the frame quality indication used to specify a reliability of the modulated received frame based on the correlation level. 
+22. A frame quality indication generator as claimed in claim 21, wherein the frame quality indication generator is a frame quality indication generator for a turbo coding receiver.
+23. A frame quality indication generator as claimed in claim 21, wherein the frame quality indication generator is a frame quality indication generator for a Viterbi-convolutional coding receiver.
+24. A frame quality indication generator as claimed in claim 21, wherein the frame quality indication generator further comprises a frame store adapted to retrievably store a copy of the modulated frame signal pending correlation with the re-modulated frame.
+25. A frame quality indication generator as claimed in claim 21, wherein the decision circuit further comprises:
+a) a register adapted to store a threshold level, whereby the frame is accepted if the correlation level is greater than or equal to the threshold level, and otherwise the frame is rejected. 
+26. A frame quality indication generator as claimed in claim 21, wherein the decision circuit further comprises:
+a) two registers adapted to store a first threshold level and a second threshold level, respectively, the first threshold level being greater than the second threshold level, whereby the frame is accepted if the correlation level is greater than or equal to the first threshold level, and otherwise the frame is rejected.",370332000,"H04L0001006600 | H04L0001200000 | H04L0001208000","H04L00100000 | H04L00120000"
+US6738077,"Dynamic generation and automated distribution of user interface from database model","A method and apparatus for automatically and dynamically generating a user interface for a client based upon a database model. An application server creates a user interface description in accordance with the database model. The description is then distributed to the client which interprets the description and creates the user interface therefrom.","1. A method comprising the steps of:
+receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+classifying said plurality of entities into entity types, said classifying including: 
+determining whether a first entity in the plurality of entities satisfies a first set of conditions; and 
+classifying the first entity as a first entity type upon determining that the first entity satisfies the first set of conditions; 
+creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model. 
+2. A method according to claim 1 further comprising: said client requesting that said description be created.
+3. A method according to claim 1 further comprising:
+interpreting of said description by said client; 
+creating of a controller hierarchy resulting from said interpretation; and 
+generating of elements of said user interface through said controller hierarchy. 
+4. A method according to claim 3 further wherein said client requests data from said database, said data utilized to populate said user interface elements.
+5. A method according to claim 1 wherein an application server performs said classifying, creating and distributing.
+6. A method according to claim 5 wherein said application server receives preferences of said client, said preferences utilized in creating said description.
+7. A method according to claim 5 wherein said application server receives authentication information from said client, said application server authorizing said client prior to creating said description.
+8. A method according to claim 1 wherein said creating and distributing are repeated for every desired instantiation of said user interface to said database.
+9. A method comprising the steps of:
+receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+classifying said plurality of entities into entity types, said classifying including: 
+determining whether a given entity satisfies first set of conditions, and if not, then classifying said given entity as a Dependent entity type; 
+if said given entity satisfies said first set of conditions, then determining if said given entity additionally satisfies a second set of conditions; and 
+if said given entity is determined to additionally satisfy said second set of conditions, then classifying said given entity as a Enumeration entity type, and if not, then classifying said entity as a Main entity type; 
+creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model. 
+10. A method according to claim 9 wherein if said given entity is classified as type Enumeration then:
+providing for said given entity a Query window; and 
+providing for said given entity a Modal Select Dialog. 
+11. A method according to claim 9 wherein if said given entity is classified as type Enumeration then:
+providing for said given entity a Query window; 
+providing for said given entity a Form window and a Modal Form Dialog; and 
+providing for said given entity a Modal Select Dialog. 
+12. A system comprising:
+a client; and 
+an application server coupled to said client, said application server configured to provide to said client a description of a user interface to a database having a data model containing a plurality of entities, each entity describing a type of data object associated with said database, said description based upon classification of said plurality of entities into entity types wherein said classification includes classification of a first entity as a first entity type upon determination that the first entity satisfies a first set of conditions. 
+13. A system according to claim 12 wherein said client provides at least one request for said user interface description, preferences and authentication information.
+14. A system according to claim 13 wherein said application server provides data from said database to said client in order to populate said user interface.
+15. An apparatus comprising:
+means for receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+means for classifying said plurality of entities into entity types, said means for classifying including: 
+means for determining whether a first entity in the plurality of entities satisfies a first set of conditions; and 
+means for classifying the first entity as a first entity type upon determining that the first entity satisfies the first set of conditions; 
+means for creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+means for distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model. 
+16. A method comprising the steps of:
+receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+classifying said plurality of entities into entity types; 
+creating a description of a user interface, said description based upon said classification of said plurality of entities; 
+distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model; and 
+creating property lists for each of four tasks, said tasks including Query, List, Form and Identify tasks, said property lists determining the visibility of properties in said elements of said user interface. 
+17. A method comprising the steps of:
+receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+classifying said plurality of entities into entity types, wherein said classifying produces a first entity type for a first group of data objects and a second entity type for a second group of data objects, said data objects in said first group of data objects being updated in said database more frequently than said data objects in said second group of data objects; 
+creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model. 
+18. A computer program product having a computer readable medium having computer program instructions recorded thereon, the computer program product comprising:
+instructions for receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+instructions for classifying said plurality of entities into entity types, said instructions for classifying including: 
+instructions for determining whether a first entity in the plurality of entities satisfies a first set of conditions; and 
+instructions for classifying the first entity as a first entity type upon determining that the first entity satisfies the first set of conditions; 
+instructions for creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+instructions for distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model. 
+19. A computer program product according to claim 18 further comprising:
+instructions for receiving a request from said client that said description be created. 
+20. A computer program product according to claim 18 wherein said computer program instructions are stored to an application server that executes said computer program instructions.
+21. A computer program product according to claim 20 further comprising:
+instructions for receiving preferences from said client, said preferences utilized in the instructions for creating said description. 
+22. A computer program product according to claim 20 further comprising:
+instructions for receiving authentication information from said client; and 
+instructions for authorizing said client prior to creating said description. 
+23. A computer program product having a computer readable medium having computer program instructions recorded thereon, the computer program product comprising:
+instructions for receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+instructions for classifying said plurality of entities into entity types, said instructions for classifying including: 
+instructions for determining whether a given entity satisfies a first set of conditions, and if not, then classifying said given entity as a Dependent entity type; 
+instructions for determining if said given entity additionally satisfies a second set of conditions if said given entity satisfies said first set of conditions; and 
+instructions for classifying said given entity as a Enumeration entity type if said given entity is determined to additionally satisfy said second set of conditions, and if not, then classifying said entity as a Main entity type; 
+instructions for creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+instructions for distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model. 
+24. A computer program product having a computer readable medium having computer program instructions recorded thereon, the computer program product comprising:
+instructions for receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+instructions for classifying said plurality of entities into entity types; 
+instructions for creating a description of a user interface, said description based upon said classification of said plurality of entities; 
+instructions for distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model; and 
+instructions for creating property lists for each of four tasks, said tasks including Query, List, Form and Identify tasks, said property lists determining the visibility of properties in said elements of said user interface. 
+25. A computer program product having a computer readable medium having computer program instructions recorded thereon, the computer program product comprising:
+instructions for receiving a data model of a database, said data model containing a plurality of entities, each entity describing a type of data object associated with said database; 
+instructions for classifying said plurality of entities into entity types, wherein said instructions for classifying produces a first entity type for a first group of data objects and a second entity type for a second group of data objects, said data objects in said first group of data objects being updated in said database more frequently than said data objects in said second group of data objects; 
+instructions for creating a description of a user interface, said description based upon said classification of said plurality of entities; and 
+instructions for distributing said description to a client, said client enabled thereupon to generate elements of said user interface that permits a user of said client to transact with said database in a manner conforming to said data model.",715744000,"G06F0016252000 | Y10S0707999430","G06F00700000 | G06F01500000 | G06F01730000"
+US6738095,"Orientation-sensitive electronic vertical shutter release lock","A digital camera comprising; a user controlled camera system; an orientation sensor for sensing whether the camera is in one of a horizontal or vertical positions; a user actuated switch located on the side of the camera when the camera is in the horizontal position; and means for selectively enabling/disabling said user controlled camera system as a function of the orientation of said orientation sensor.","1. A digital camera comprising;
+an image capture system for capturing an image of a scene; 
+wherein when said camera is in a normal horizontal position, said image capture system captures a landscape-type image, and wherein when said camera is in a vertical position, oriented 90 from said horizontal position, said image capture system captures a portrait type image; 
+an orientation sensor for sensing whether said camera is in one of said horizontal or vertical positions; 
+an image capture switch located on the side of said camera when said camera is in said horizontal position for enabling activation of said image capture system; and 
+means for selectively preventing enablement of activation of said image capture system by said image capture switch in response to said orientation sensor sensing that said camera is in said horizontal position. 
+2. The camera of claim 1 wherein said image capture system includes a shutter assembly and wherein said image capture switch enables activation of said shutter assembly.
+3. The digital camera of claim 1 wherein said image capture switch produces a signal when actuated which effects activation of said image capture system and wherein said means for selectively preventing, selectively prevents said signal from effecting activation of said image capture system.",348373000,"H04N0005232000 | G03B0007000000 | G03B0017380000","G03B00700000 | G03B01700000 | G03B01738000 | H04N00522500 | H04N00523200"

@@ -1,0 +1,10 @@
+RoomID,Floor,Use,Square Footage
+100,x,y,z
+101,1,Retail,1900
+102,1,Retail,1850
+103,1,Restroom,250
+104,1,Maintenance,150
+200,2,Studio,875
+201,2,Studio,734
+202,2,Studio,624
+203,2,Studio,699
